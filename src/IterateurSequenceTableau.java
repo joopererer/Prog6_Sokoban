@@ -2,13 +2,13 @@ package src;
 
 import java.util.NoSuchElementException;
 
-public class IterateurSequenceTableau implements Iterateur{
+public class IterateurSequenceTableau <T> implements Iterateur<T> {
 
-    private final SequenceTableau seq;
+    private final SequenceTableau<T> seq;
     private int pos_prev, pos_cur;
     private boolean isValide;
 
-    public IterateurSequenceTableau(SequenceTableau seq){
+    public IterateurSequenceTableau(SequenceTableau<T> seq){
         this.seq = seq;
         pos_cur = 0;
     }
@@ -19,9 +19,10 @@ public class IterateurSequenceTableau implements Iterateur{
     }
 
     @Override
-    public int prochain() {
+    public T prochain() {
         if(aProchain()){
-            int val = seq.tableau[pos_cur];
+            @SuppressWarnings("unchecked")
+            T val = (T)seq.tableau[pos_cur];
             pos_prev = pos_cur;
             pos_cur++;
             isValide = true;

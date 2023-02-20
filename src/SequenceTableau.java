@@ -1,22 +1,22 @@
 package src;
 
-public class SequenceTableau implements Sequence {
+public class SequenceTableau <T> implements Sequence <T> {
 
-    int[] tableau;
+    Object[] tableau;
     int size;
 
     public SequenceTableau(){
-        tableau = new int[4];
+        tableau = new Object[4];
         size = 0;
     }
 
     private void reallocation(){
-        int[] new_tab = new int[size*2];
+        Object[] new_tab = new Object[size*2];
         System.arraycopy(tableau, 0, new_tab, 0, size);
         tableau = new_tab;
     }
 
-    public void insereTete(int element) {
+    public void insereTete(T element) {
         if(size>=tableau.length){
             reallocation();
         }
@@ -29,7 +29,7 @@ public class SequenceTableau implements Sequence {
         size+=1;
     }
 
-    public void insereQueue(int element) {
+    public void insereQueue(T element) {
         if(size>=tableau.length){
             reallocation();
         }
@@ -37,12 +37,12 @@ public class SequenceTableau implements Sequence {
         size += 1;
     }
 
-    public int extraitTete() {
+    public T extraitTete() {
         if(estVide()){
             throw new RuntimeException("Séquence vide");
         }
-
-        int value = tableau[0];
+        @SuppressWarnings("unchecked")
+        T value = (T)tableau[0];
         // deplacement à la tete
         for(int i=0; i<size-1; i++){
             tableau[i] = tableau[i+1];
@@ -57,8 +57,8 @@ public class SequenceTableau implements Sequence {
     }
 
     @Override
-    public Iterateur iterateur() {
-        return new IterateurSequenceTableau(this);
+    public Iterateur<T> iterateur() {
+        return new IterateurSequenceTableau<>(this);
     }
 
     public String toString() {

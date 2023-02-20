@@ -2,15 +2,15 @@ package src;
 
 import java.util.NoSuchElementException;
 
-public class IterateurSequenceListe implements Iterateur {
+public class IterateurSequenceListe <T> implements Iterateur <T> {
 
-    private final SequenceListe seq;
-    private SequenceListe.Node prev, pprev;
-    private SequenceListe.Node courant;
+    private final SequenceListe<T> seq;
+    private SequenceListe.Node<T> prev, pprev;
+    private SequenceListe.Node<T> courant;
     private boolean isValide;
 
 
-    public IterateurSequenceListe(SequenceListe seq){
+    public IterateurSequenceListe(SequenceListe<T> seq){
         this.seq = seq;
         courant = seq.tete;
     }
@@ -21,7 +21,7 @@ public class IterateurSequenceListe implements Iterateur {
     }
 
     @Override
-    public int prochain() {
+    public T prochain() {
         if(aProchain()) {
             pprev = prev;
             prev = courant;

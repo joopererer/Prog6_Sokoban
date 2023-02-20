@@ -1,51 +1,51 @@
 package src;
 
-public class SequenceListe implements Sequence {
+public class SequenceListe <T> implements Sequence <T> {
 
-    static class Node {
-        protected int value;
-        protected Node next;
+    static class Node <T> {
+        protected T value;
+        protected Node<T> next;
     }
 
-    Node tete;
+    Node<T> tete;
 
-    public Iterateur iterateur() {
-        return new IterateurSequenceListe(this);
+    public Iterateur<T> iterateur() {
+        return new IterateurSequenceListe<>(this);
     }
 
-    public void insereTete(int element) {
+    public void insereTete(T element) {
         if(tete==null){
-            tete = new Node();
+            tete = new Node<>();
             tete.value = element;
             tete.next = null;
         }else{
-            Node new_node = new Node();
+            Node<T> new_node = new Node<>();
             new_node.value = element;
             new_node.next = tete;
             tete = new_node;
         }
     }
 
-    public void insereQueue(int element) {
+    public void insereQueue(T element) {
         if(tete==null){
             insereTete(element);
         }else{
-            Node node = tete;
+            Node<T> node = tete;
             while(node.next!=null){
                 node = node.next;
             }
-            node.next = new Node();
+            node.next = new Node<>();
             node.next.value = element;
             node.next.next = null;
         }
     }
 
-    public int extraitTete() {
+    public T extraitTete() {
         if(estVide()){
             throw new RuntimeException("Séquence vide");
         }
 
-        int value = tete.value;
+        T value = tete.value;
         tete = tete.next;
 
         return value;
@@ -58,7 +58,7 @@ public class SequenceListe implements Sequence {
     public String toString() {
         StringBuilder result = new StringBuilder();
         if(!estVide()){
-            Node node = tete;
+            Node<T> node = tete;
             while(node.next!=null){
                 result.append(node.value);
                 result.append(',');

@@ -1,10 +1,10 @@
 package src;
 
-public interface Iterateur {
+public interface Iterateur <T> {
 
     boolean aProchain();
 
-    int prochain();
+    T prochain();
 
     void supprime();
 

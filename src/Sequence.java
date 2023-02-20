@@ -1,15 +1,15 @@
 package src;
 
-public interface Sequence {
+public interface Sequence <T> {
 
-    void insereTete(int element);
+    void insereTete(T element);
 
-    void insereQueue(int element);
+    void insereQueue(T element);
 
-    int extraitTete();
+    T extraitTete();
 
     boolean estVide();
 
-    Iterateur iterateur();
+    Iterateur<T> iterateur();
 
 }
