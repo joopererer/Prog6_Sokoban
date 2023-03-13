@@ -1,11 +1,12 @@
 package src;
 
+import javax.swing.*;
 import java.io.*;
 
 public class Sokoban {
 
     public static void main(String[] args){
-        LecteurNiveaux lecture;
+        /*LecteurNiveaux lecture;
         RedacteurNiveau read;
         try {
             FileInputStream fis = new FileInputStream(new File("res/Original.txt"));
@@ -24,7 +25,9 @@ public class Sokoban {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
+        Jeu jeu = new Jeu("res/Original.txt");
+        SwingUtilities.invokeLater(new InterfaceGraphique(jeu));
     }
 
 }
